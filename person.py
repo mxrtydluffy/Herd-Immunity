@@ -4,12 +4,17 @@ from virus import Virus
 
 
 class Person(object):
+    """
+    This Person is protected
+    """
+
     # Define a person. 
     def __init__(self, _id, is_vaccinated, infection = None):
         # A person has an id, is_vaccinated and possibly an infection
         self._id = _id  # int
-        # TODO Define the other attributes of a person here
-        pass
+        self.is_vaccinated = is_vaccinated
+        self.infection = infection
+        self.is_alive = self.did_survive_infection()
 
     def did_survive_infection(self):
         # This method checks if a person survived an infection. 
@@ -21,6 +26,13 @@ class Person(object):
         # Set their properties to show this
         # TODO: The method Should return a Boolean showing if they survived.
         pass
+        if self.infection != None:
+            check_survival = random.randint(0.0,1.0)
+            if check_survival < self.infection:
+                return False
+            else:
+                self.is_vaccinated = True
+                return True
 
 if __name__ == "__main__":
     # This section is incomplete finish it and use it to test your Person class
