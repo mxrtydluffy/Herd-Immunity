@@ -1,8 +1,10 @@
-class Logger(object):
+import csv
+
+class Logger(object):    
     def __init__(self, file_name):
         # TODO:  Finish this initialization method. The file_name passed should be the
         # full file name of the file that the logs will be written to.
-        pass
+        self.file_name = file_name
 
     # The methods below are just suggestions. You can rearrange these or 
     # rewrite them to better suit your code style. 
@@ -28,14 +30,16 @@ class Logger(object):
         # the 'a' mode to append a new log to the end, since 'w' overwrites the file.
         # NOTE: Make sure to end every line with a '/n' character to ensure that each
         # event logged ends up on a separate line!
-        pass
+        f = open(self.file_name, 'a')
+        f.write(f"Population: {pop_size}/tVaccination %: {vacc_percentage}\tVirus Name: {virus_name}\tMortality Rate: {mortality_rate}\R Number: {basic_repro_num}\n")
 
     def log_interactions(self, step_number, number_of_interactions, number_of_new_infections):
         # TODO: Finish this method. Think about how the booleans passed (or not passed)
         # represent all the possible edge cases. Use the values passed along with each person,
         # along with whether they are sick or vaccinated when they interact to determine
         # exactly what happened in the interaction and create a String, and write to your logfile.
-        pass
+        f = open(self.file_name, 'a')
+        f.write(f"Number of steps: {step_number}\n Number of Interactions: {number_of_interactions}\n Number of New Infections: {number_of_new_infections}\n")
 
     def log_infection_survival(self, step_number, population_count, number_of_new_fatalities):
         # TODO: Finish this method. If the person survives, did_die_from_infection
@@ -46,3 +50,6 @@ class Logger(object):
     def log_time_step(self, time_step_number):
         # 
         pass
+
+    test = Logger('test_file')
+    test.write_metadata()
