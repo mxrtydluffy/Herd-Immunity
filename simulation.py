@@ -7,9 +7,16 @@ from virus import Virus
 
 class Simulation(object):
     def __init__(self, virus, pop_size, vacc_percentage, initial_infected=1):
-        # TODO: Create a Logger object and bind it to self.logger.
+        self.logger = Logger('Logfile') # TODO: Create a Logger object and bind it to self.logger.
         # Remember to call the appropriate logger method in the corresponding parts of the simulation.
         
+        self.virus = virus
+        self.pop_size = pop_size
+        self.vacc_percentage = vacc_percentage
+        self.initial_infected = initial_infected
+        
+        self.people = self._create_population()
+
         # TODO: Store the virus in an attribute
         # TODO: Store pop_size in an attribute
         # TODO: Store the vacc_percentage in a variable
@@ -22,8 +29,23 @@ class Simulation(object):
         pass
 
     def _create_population(self):
-        # TODO: Create a list of people (Person instances). This list 
-        # should have a total number of people equal to the pop_size. 
+        # Vital to prioritize infected
+        people = []# TODO: Create a list of people (Person instances). This list should have a total number of people equal to the pop_size.
+        id = 0
+        for i in range (self.initial_infected):
+            infected_people = Person(id, False, self.virus)
+            people.append(infected_people)
+            id += 1
+
+        # Then deal with unifected
+        for j in range (self.pop-size - self.initial_infected):
+            uninfected_people = Person(id, False)
+            people.append(uninfected_people)
+            id += 1
+        
+        return people
+
+
         # Some of these people will be uninfected and some will be infected.
         # The number of infected people should be equal to the the initial_infected
         # TODO: Return the list of people
