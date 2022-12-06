@@ -14,6 +14,7 @@ class Simulation(object):
         self.pop_size = pop_size
         self.vacc_percentage = vacc_percentage
         self.initial_infected = initial_infected
+
         
         self.people = self._create_population()
 
@@ -36,9 +37,12 @@ class Simulation(object):
             infected_people = Person(id, False, self.virus)
             people.append(infected_people)
             id += 1
+            
+            # Need to reset inorder to deal with uninfected
+            id = self.initial_infected + 1
 
-        # Then deal with unifected
-        for j in range (self.pop-size - self.initial_infected):
+        # Uninfected population
+        for i in range (self.pop_size - self.initial_infected):
             uninfected_people = Person(id, False)
             people.append(uninfected_people)
             id += 1
@@ -52,13 +56,16 @@ class Simulation(object):
         pass
 
     def _simulation_should_continue(self):
-        # This method will return a booleanb indicating if the simulation 
-        # should continue. 
-        # The simulation should not continue if all of the people are dead, 
-        # or if all of the living people have been vaccinated. 
-        # TODO: Loop over the list of people in the population. Return True
-        # if the simulation should continue or False if not.
-        pass
+        survivors = len(self.people)
+        vaccinated = 0
+        while survivors > 0 or vaccinated < len(self.people):
+            for person in self.people:
+                if person.survived != True:
+                    survivors -= 1
+                if person.is_vaccinated != False:
+                    vaccinated += 1
+            return True
+        return False
 
     def run(self):
         # This method starts the simulation. It should track the number of 
@@ -73,6 +80,7 @@ class Simulation(object):
             # TODO: for every iteration of this loop, call self.time_step() 
             # Call the _simulation_should_continue method to determine if 
             # the simulation should continue
+            self.time_step_counter()
             should_continue = self._simulation_should_continue()
             pass
 
