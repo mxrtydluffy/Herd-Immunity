@@ -31,7 +31,7 @@ class Logger(object):
         # NOTE: Make sure to end every line with a '/n' character to ensure that each
         # event logged ends up on a separate line!
         f = open(self.file_name, 'a')
-        f.write(f"Population: {pop_size}/tVaccination %: {vacc_percentage}\tVirus Name: {virus_name}\tMortality Rate: {mortality_rate}\R Number: {basic_repro_num}\n")
+        f.write(f"Population: {pop_size}, Vaccination %: {vacc_percentage}, Virus Name: {virus_name}, Mortality Rate: {mortality_rate}, Reproduction Rate: {basic_repro_num}")
 
     def log_interactions(self, step_number, number_of_interactions, number_of_new_infections):
         # TODO: Finish this method. Think about how the booleans passed (or not passed)
