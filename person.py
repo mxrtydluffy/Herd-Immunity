@@ -127,8 +127,6 @@ if __name__ == "__main__":
     print(f" Survived: {survived}")
     print(f" Decease: {did_not_survive}")
 
-
-    # ______________________________________________________
     
     # TODO When the loop is complete print your results.
     # The results should roughly match the mortality rate of the virus
@@ -140,10 +138,26 @@ if __name__ == "__main__":
     # Stretch challenge! 
     # Check the infection rate of the virus by making a group of 
     # unifected people. Loop over all of your people. 
+
+    uninfected_people = []
+
+    for i in range(1, 100):
+        uninfected = Person(i, False)
+        uninfected_people.append(uninfected)
+
     # Generate a random number. If that number is less than the 
-    # infection rate of the virus that person is now infected. 
+    # infection rate of the virus that person is now infected.
+
+    got_infected = 0
+    immune = 0
+
     # Assign the virus to that person's infection attribute. 
+
+    
 
     # Now count the infected and uninfect people from this group of people. 
     # The number of infectedf people should be roughly the same as the 
     # infection rate of the virus.
+
+
+    # Write Virus tests below

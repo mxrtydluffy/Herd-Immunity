@@ -51,5 +51,5 @@ class Logger(object):
         # 
         pass
 
-    test = Logger('test_file')
-    test.write_metadata()
+    # test = Logger('test_file')
+    # test.write_metadata()
