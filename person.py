@@ -42,11 +42,12 @@ if __name__ == "__main__":
 
     # Create an unvaccinated person and test their attributes
     unvaccinated_person = Person(2, False)
-    # TODO Test unvaccinated_person's attributes here...
-    assert unvaccinated_person._id == 2
-    assert vaccinated_person.did_survive_infection is True
-    assert vaccinated_person.is_vaccinated is False
-    assert vaccinated_person.infection is None
+    # TODO Test unvaccinated_person's attributes here... | Remember to release in terminal
+    print("-----------------------------")
+    print(unvaccinated_person._id)
+    print(unvaccinated_person.is_vaccinated)
+    print(unvaccinated_person.infection)
+    print("-----------------------------")
 
     
     # Test an infected person. An infected person has an infection/virus
@@ -57,6 +58,12 @@ if __name__ == "__main__":
     # TODO: complete your own assert statements that test
     # the values of each attribute
     # assert ...
+    
+    assert unvaccinated_person._id == 2
+    assert vaccinated_person.did_survive_infection is True
+    assert vaccinated_person.is_vaccinated is False
+    assert vaccinated_person.infection is None
+
 
     # You need to check the survival of an infected person. Since the chance
     # of survival is random you need to check a group of people. 
