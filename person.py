@@ -139,6 +139,8 @@ if __name__ == "__main__":
     # Check the infection rate of the virus by making a group of 
     # unifected people. Loop over all of your people. 
 
+    # _________________TEST #1_________________
+
     uninfected_people = []
 
     for i in range(1, 100):
@@ -153,11 +155,62 @@ if __name__ == "__main__":
 
     # Assign the virus to that person's infection attribute. 
 
+    for person in uninfected_people:
+        immunity = random.uniform(0, 1)
+        if immunity < virus.repro_rate:
+            person.infection = virus
+            got_infected += 1
+        else:
+            immune += 1
     
+    print("_________________________________")
+    print(f'Infected: {got_infected}')
+    print(f'Immune: {immune}')
+    print("_________________________________")
 
-    # Now count the infected and uninfect people from this group of people. 
-    # The number of infectedf people should be roughly the same as the 
-    # infection rate of the virus.
+
+    # _________________TEST #2_________________
+
+    """
+    #178-179 is the virus info and information about
+    the second person.
+    #183-187 is determining the attributes of the person.
+    """
+
+    virus2 = Virus('Diphtheria', 0.65, 0.40)
+    second_person = Person(1, False, virus2)
+
+    assert second_person._id == 1
+    assert second_person.is_vaccinated is False
+    assert second_person.infection is not None
+    assert second_person.did_survive_infection() is False
+    assert second_person.is_infected is True
 
 
-    # Write Virus tests below
+    # _________________TEST #3_________________
+
+    """
+    #196-199 is the reflecting those who were infected
+    #202-208 shows who did survive the infection and those
+    who didn't
+    """
+
+    diphtheria_people = []
+    for i in range(1, 100):
+        diphtheria_infected = Person(i, False, virus2)
+        diphtheria_people.append(diphtheria_infected)
+
+    survived_diphtheria = 0
+    did_not_survive_diphtheria = 0
+    for person in diphtheria_people:
+        if person.did_survive_infection():
+            survived_diphtheria += 1
+        else:
+            did_not_survive_diphtheria += 1
+
+    assert survived_diphtheria == 0
+
+
+
+    print(f'Survived COVID: {survived_diphtheria}')
+    print(f'COVID Deaths: {did_not_survive_diphtheria}')
