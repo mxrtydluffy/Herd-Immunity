@@ -7,15 +7,22 @@ from virus import Virus
 
 class Simulation(object):
     def __init__(self, virus, pop_size, vacc_percentage, initial_infected=1):
-        self.logger = Logger('simulation_txt') # TODO: Create a Logger object and bind it to self.logger.
+        self.logger = Logger('simulation_test.txt') # TODO: Create a Logger object and bind it to self.logger.
         # Remember to call the appropriate logger method in the corresponding parts of the simulation.
         
         self.virus = virus
         self.pop_size = pop_size
         self.vacc_percentage = vacc_percentage
         self.initial_infected = initial_infected
-        self.mankind = self._create_population()
-        self.vaccinate_pop = pop_size * vacc_percentage
+        self.newly_infected = []
+        self.time_step_number = 0
+        self.number_new_infections = 0
+        self.total_vax = 0
+        self.vax_saves = 0
+        self.final_survivors = 0
+        self.fatalities = 0
+        self.mankind = self._create_population(vacc_percentage, initial_infected)
+        
 
         
         self.people = self._create_population()
@@ -63,33 +70,68 @@ class Simulation(object):
     #_______________________Fix Bottom later___________________________
 
     def _simulation_should_continue(self):
-        survivors = len(self.people)
-        vaccinated = 0
-        while survivors > 0 or vaccinated < len(self.people):
-            for person in self.people:
-                if person.survived != True:
-                    survivors -= 1
-                if person.is_vaccinated != False:
-                    vaccinated += 1
+
+        """
+        Looping over all the list of people in the population doumenting
+        those who are dead and adding thme to dead count and comparing to
+        the population as a whole.
+        """
+
+        vax_counter = 0
+        dead_counter = 0
+        document_counter = 0
+
+        for person in self.mankind:
+            if person.is_alive and not person.is_vaccinated:
+                counter += 1
+            elif person.is_alive and person.is_vaccinated:
+                vax_counter += 1
+            elif not person.is_alive:
+                dead_counter += 1
+
+        print(f'Current Vax: {vax_counter}\Current Deaths: {dead_counter}\nAlive & unvax: {document_counter}')
+
+
+        # Simulation will 
+        if counter > 0:
             return True
-        return False
+        else:
+            return False
+
+
+        # survivors = len(self.people)
+        # vaccinated = 0
+        # while survivors > 0 or vaccinated < len(self.people):
+        #     for person in self.people:
+        #         if person.survived != True:
+        #             survivors -= 1
+        #         if person.is_vaccinated != False:
+        #             vaccinated += 1
+        #     return True
+        # return False
 
     def run(self):
         # This method starts the simulation. It should track the number of 
         # steps the simulation has run and check if the simulation should 
         # continue at the end of each step. 
 
-        time_step_counter = 0
         should_continue = True
+        self.logger.write_metadata(self.pop_size, self.vacc_percentage, self.virus.name, self.virus.mortality_rate, self.virus.repro_rate)
 
         while should_continue:
             # TODO: Increment the time_step_counter
             # TODO: for every iteration of this loop, call self.time_step() 
             # Call the _simulation_should_continue method to determine if 
             # the simulation should continue
-            self.time_step_counter()
+            self.time_step_counter += 1
+            print(f'Current Time Step: {self.time_step_number}')
+            self.time_step()
+            self.logger.log_interactions(self.time_step_number, self.interactions, self.number_new_infections)
             should_continue = self._simulation_should_continue()
             pass
+
+
+
 
         # TODO: Write meta data to the logger. This should be starting 
         # statistics for the simulation. It should include the initial
