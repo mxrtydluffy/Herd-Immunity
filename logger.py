@@ -39,13 +39,15 @@ class Logger(object):
         # along with whether they are sick or vaccinated when they interact to determine
         # exactly what happened in the interaction and create a String, and write to your logfile.
         filename = open(self.file_name, 'm')
-        filename.write(f"Number of steps: {step_number}\n Number of Interactions: {number_of_interactions}\n Number of New Infections: {number_of_new_infections}\n")
+        filename.write(f"Number of steps: {step_number},\nNumber of Interactions: {number_of_interactions},\nNumber of New Infections: {number_of_new_infections}\n")
 
     def log_infection_survival(self, step_number, population_count, number_of_new_fatalities):
         # TODO: Finish this method. If the person survives, did_die_from_infection
         # should be False.  Otherwise, did_die_from_infection should be True.
         # Append the results of the infection to the logfile
-        pass
+        filename = open(self.file_name, 'a')
+        filename.write(f'Step number: {step_number},\nPopulation count: {population_count},\nUpdated fatalities: {number_of_new_fatalities}')
+        filename.close()
 
     def log_time_step(self, time_step_number):
         # 
