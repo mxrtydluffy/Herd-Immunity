@@ -3,7 +3,6 @@ random.seed(42)
 from person import Person
 from logger import Logger
 from virus import Virus
-import argparse
 
 
 class Simulation(object):
@@ -12,10 +11,11 @@ class Simulation(object):
         """
         Created Logger object and bind it to self.logger.
         Make sure to call the appropriate logger method 
-        in alll the nessesaey parts of the simulation.
+        in all the nessesary parts of the simulation.
         """
 
-        self.logger = Logger('logger.txt') 
+        logger = Logger("logger.txt")
+        self.logger = logger
         self.virus = virus
         self.pop_size = pop_size
         self.vacc_percentage = vacc_percentage
@@ -33,11 +33,11 @@ class Simulation(object):
         
         """
         In the population we need to know all the details of the people.
-        Knowing this it's vital to priortize the infected
-        #37-39 creates the list of people
-        #41-44 represents the vaccinated group
-        #46-52 stands for infected group
-        #53-56 accomadates for the calculation
+        Knowing this it's vital to prioritize the infected
+        #42 is the list of people
+        #46 represents the vaccinated group
+        #51 stands for infected group
+        #58 calculates the pop sice with infected and vaccinated people
         """
 
         people = []
@@ -77,10 +77,10 @@ class Simulation(object):
 
         pop = self.is_vaccinated + self.total_of_deaths
         if pop == self.pop_size: 
-            self.logger.total_data(self.total_of_deaths, self.is_vaccinated)
+            self.logger.final_results(self.total_of_deaths, self.is_vaccinated)
             return False
         elif len(self.newly_infected) == 0:
-            self.logger.total_data(self.total_of_deaths, self.total_infected, self.is_vaccinated)
+            self.logger.final_results(self.total_of_deaths, self.total_infected, self.is_vaccinated)
             return False
         else:
             return True
@@ -114,7 +114,6 @@ class Simulation(object):
 
             if not should_continue:
                 break
-
             self._infect_newly_infected()
             self.total_infected += self.infected_number
 
@@ -175,8 +174,6 @@ class Simulation(object):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='simulates viral infection in population')
-
 
     virus_name = "Polio"
     repro_num = 0.4
