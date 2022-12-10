@@ -59,7 +59,8 @@ class Simulation(object):
         # Some of these people will be uninfected and some will be infected.
         # The number of infected people should be equal to the the initial_infected
         # TODO: Return the list of people
-        pass
+
+    #_______________________Fix Bottom later___________________________
 
     def _simulation_should_continue(self):
         survivors = len(self.people)
