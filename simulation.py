@@ -7,13 +7,15 @@ from virus import Virus
 
 class Simulation(object):
     def __init__(self, virus, pop_size, vacc_percentage, initial_infected=1):
-        self.logger = Logger('Logfile') # TODO: Create a Logger object and bind it to self.logger.
+        self.logger = Logger('simulation_txt') # TODO: Create a Logger object and bind it to self.logger.
         # Remember to call the appropriate logger method in the corresponding parts of the simulation.
         
         self.virus = virus
         self.pop_size = pop_size
         self.vacc_percentage = vacc_percentage
         self.initial_infected = initial_infected
+        self.mankind = self._create_population()
+        self.vaccinate_pop = pop_size * vacc_percentage
 
         
         self.people = self._create_population()
@@ -31,23 +33,27 @@ class Simulation(object):
 
     def _create_population(self):
         # Vital to prioritize infected
-        people = []# TODO: Create a list of people (Person instances). This list should have a total number of people equal to the pop_size.
-        id = 0
-        for i in range (self.initial_infected):
-            infected_people = Person(id, False, self.virus)
-            people.append(infected_people)
-            id += 1
+        total_population = []# TODO: Create a list of people (Person instances). This list should have a total number of people equal to the pop_size.
+        for i in range (self.pop_size):
+            if self.initial_infected > 0:
+                total_population.append(Person(i, False, self.virus))
+            elif self.vaccinate_pop > 0:
+                total_population.append(Person(i, True))
+            else:
+                total_population.append(Person(i, False))
             
-            # Need to reset inorder to deal with uninfected
-            id = self.initial_infected + 1
+            return total_population
+            
+        # Next need to reset inorder to deal with uninfected
+        # id = self.initial_infected + 1
 
-        # Uninfected population
-        for i in range (self.pop_size - self.initial_infected):
-            uninfected_people = Person(id, False)
-            people.append(uninfected_people)
-            id += 1
+        # # Uninfected population
+        # for i in range (self.pop_size - self.initial_infected):
+        #     uninfected_people = Person(id, False)
+        #     people.append(uninfected_people)
+        #     id += 1
         
-        return people
+        # return people
 
 
         # Some of these people will be uninfected and some will be infected.
