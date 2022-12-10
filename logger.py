@@ -40,6 +40,7 @@ class Logger(object):
         # exactly what happened in the interaction and create a String, and write to your logfile.
         filename = open(self.file_name, 'a')
         filename.write(f"Number of steps: {step_number}\nNumber of Interactions: {number_of_interactions}\nNumber of New Infections: {number_of_new_infections}\n")
+        filename.close()
 
     def log_infection_survival(self, step_number, population_count, number_of_new_fatalities):
         # TODO: Finish this method. If the person survives, did_die_from_infection
@@ -52,6 +53,7 @@ class Logger(object):
     def log_time_step(self, time_step_number):
         filename = open(self.file_name)
         filename.write(f'Step Number: {time_step_number}')
+        filename.close()
 
     def final_results(self, survivors, fatalities, vaccinated_pop, interactions, infections):
         filename = open(self.file_name, 'a')
