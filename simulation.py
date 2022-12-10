@@ -114,6 +114,7 @@ class Simulation(object):
 
             if not should_continue:
                 break
+
             self._infect_newly_infected()
             self.total_infected += self.infected_number
 
@@ -186,17 +187,3 @@ if __name__ == "__main__":
 
     sim = Simulation(virus, pop_size, vacc_percentage, initial_infected)
     sim.run()
-
-    # # Test your simulation here
-    # virus_name = "Sniffles"
-    # repro_num = 0.5
-    # mortality_rate = 0.12
-    # virus = Virus(virus_name, repro_num, mortality_rate)
-
-    # # Set some values used by the simulation
-    # pop_size = 1000
-    # vacc_percentage = 0.1
-    # initial_infected = 10
-
-    # # Make a new instance of the imulation
-    # virus = Virus(virus_name, pop_size, vacc_percentage, initial_infected)

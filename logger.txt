@@ -1,24 +1,29 @@
-Calculating Herd ImmunityPopulation: 575000
+Calculating Herd Immunity
+Population: 575000
 Vaccination Percentage: 0.42
 Virus Name: Polio
 Mortality Rate: 0.7
 Reproduction Rate: 0.4
 Number of those Initially infected: 85
+
 Step Number: 1
 Number of Newly Infected: 1991
 Number of New Deaths: 58
 Total Number of Deaths: 58
 Number of Individuals Vaccinated: 27
+
 Step Number: 2
 Number of Newly Infected: 43543
 Number of New Deaths: 1395
 Total Number of Deaths: 1453
 Number of Individuals Vaccinated: 623
+
 Step Number: 3
 Number of Newly Infected: 274369
 Number of New Deaths: 30323
 Total Number of Deaths: 31776
 Number of Individuals Vaccinated: 13843
+
 Step Number: 4
 Number of Newly Infected: 13512
 Number of New Deaths: 191796
